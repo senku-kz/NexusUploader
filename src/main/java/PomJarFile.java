@@ -4,8 +4,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class PomJarFile {
-    private RunMvnFromJava runMvnFromJava = new RunMvnFromJava();
-    private XmlFile xmlFile = new XmlFile();
+    private final RunMvnFromJava runMvnFromJava = new RunMvnFromJava();
+    private final XmlFile xmlFile = new XmlFile();
+
+    public PomJarFile() {
+    }
+
     public void runMvnCommand(String repositoryId, String urlNexus, String pomFile, String jarFile){
         /*
             mvn deploy:deploy-file \
@@ -26,7 +30,7 @@ public class PomJarFile {
 
         try{
             String cmd = String.format("mvn deploy:deploy-file -DgeneratePom=false " +
-                            "-DrepositoryId=localnexus " +
+                            "-DrepositoryId=%s " +
                             "-Durl=%s " +
                             "-DpomFile==%s " +
                             "-Dfile=%s",
@@ -41,8 +45,9 @@ public class PomJarFile {
             String outlist[] = runMvnFromJava.runCommand(cmd);
             // Print the output to screen character by character.
             // Safe and not very inefficient.
-            for (int i = 0; i < outlist.length; i++)
-                System.out.println(outlist[i]);
+            for (String el:outlist){
+                System.out.println(el);
+            }
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -55,12 +60,12 @@ public class PomJarFile {
         Iterator<String> itr = fileSet.iterator();
         while (itr.hasNext()) {
             System.out.println("===========================================");
-            String srcFilePom = srcDir + "/" + itr.next().toString();
+            String srcFilePom = srcDir + "/" + itr.next();
             System.out.println(srcFilePom);
 
             String srcFileJar = srcFilePom.substring(0,srcFilePom.length()-3) + "jar";
             boolean c = new File(srcFileJar).isFile();
-            System.out.println(String.format("%s\t%s", c, srcFileJar));
+            System.out.printf("%s\t%s%n", c, srcFileJar);
             if (c) {
                 this.runMvnCommand(repositoryId, urlNexus, srcFilePom, srcFileJar);
             }
