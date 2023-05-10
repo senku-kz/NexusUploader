@@ -1,9 +1,12 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
 public class RunMvnFromJava {
-    static public String[] runCommand(String cmd) throws IOException{
+    static public String[] runCommand(String cmd) throws IOException {
 
         // The actual procedure for process execution:
         //runCommand(String cmd);
