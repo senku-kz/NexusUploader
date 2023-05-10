@@ -1,4 +1,3 @@
-import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -97,7 +96,7 @@ public class XmlFile {
 //        this.runMvnCommand(this.urlNexus, srcFile, groupId, artifactId, version);
         return pomAttributes;
     }
-    public String getAttributeByElement(String expression, @NotNull Element rootElement){
+    public String getAttributeByElement(String expression, Element rootElement){
         String res = null;
                 NodeList nodeList = rootElement.getElementsByTagName(expression);
         if (nodeList.getLength()>1){
@@ -116,7 +115,7 @@ public class XmlFile {
         return res;
     }
 
-    public String getAttributeByNodeInRoot(String expression, @NotNull Element rootElement){
+    public String getAttributeByNodeInRoot(String expression, Element rootElement){
         NodeList nodeList = rootElement.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node nNode = nodeList.item(i);
@@ -129,7 +128,7 @@ public class XmlFile {
         return null;
     }
 
-    public String getAttributeByNodeInParent(String expression, @NotNull Element rootElement){
+    public String getAttributeByNodeInParent(String expression, Element rootElement){
 //        System.out.println("getAttributeByNodeInParent");
         NodeList nodeList = rootElement.getElementsByTagName("parent");
         if (nodeList.getLength()==1){
