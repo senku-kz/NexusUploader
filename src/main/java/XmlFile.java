@@ -43,6 +43,10 @@ public class XmlFile {
 
     }
 
+    public XmlFile() {
+
+    }
+
     public Document readXMLDocumentFromFile(String fileNameWithPath) throws Exception {
 
         //Get Document Builder
