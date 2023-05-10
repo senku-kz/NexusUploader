@@ -1,29 +1,20 @@
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Set;
-
 public class Main {
-
     /*
     * mvn dependency:copy-dependencies -Dmdep.copyPom=true
     * mvn dependency:copy-dependencies -Dmdep.prependGroupId=true -Dmdep.copyPom=true
     * mvn dependency:copy-dependencies -Dmdep.prependGroupId=true -Dmdep.copyPom=true -DoutputDirectory=dependencies
     * */
-    private static PomJarFile pomJarFile = new PomJarFile();
+    private static final PomJarFile pomJarFile = new PomJarFile();
 
     public static void main(String[] args){
         String repositoryId = System.getProperty("repositoryId");
         String urlNexus = System.getProperty("urlNexus");
         String srcDir = System.getProperty("srcDir");
 
-        if (args.length>0){
-            for (String arg:args) {
-                if (repositoryId == null && arg.startsWith("-DrepositoryId=")) repositoryId = arg.substring(15);
-                if (urlNexus == null && arg.startsWith("-DurlNexus=")) urlNexus = arg.substring(11);
-                if (srcDir == null && arg.startsWith("-DsrcDir=")) srcDir = arg.substring(9);
-            }
+        for (String arg : args) {
+            if (repositoryId == null && arg.startsWith("-DrepositoryId=")) repositoryId = arg.substring(15);
+            if (urlNexus == null && arg.startsWith("-DurlNexus=")) urlNexus = arg.substring(11);
+            if (srcDir == null && arg.startsWith("-DsrcDir=")) srcDir = arg.substring(9);
         }
 
         if (repositoryId == null) repositoryId = "localnexus";
