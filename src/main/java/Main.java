@@ -1,6 +1,13 @@
 import java.util.Properties;
 
 public class Main {
+    /*
+    * mvn dependency:copy-dependencies -Dmdep.copyPom=true
+    * mvn dependency:copy-dependencies -Dmdep.prependGroupId=true -Dmdep.copyPom=true
+    * mvn dependency:copy-dependencies -Dmdep.prependGroupId=true -Dmdep.copyPom=true -DoutputDirectory=dependencies
+    * */
+
+
     public static void main(String[] args){
         String urlNexus = System.getProperty("urlNexus");
         String srcDir = System.getProperty("srcDir");
@@ -12,7 +19,7 @@ public class Main {
             }
         }
 
-        if (urlNexus == null) urlNexus = "http://10.16.72.230/maven-local/";
+        if (urlNexus == null) urlNexus = "http://localNexus/maven-local/";
         if (srcDir == null) srcDir = System.getProperty("user.home") + "/dependency";
 
         System.out.println("Source directory is: " + srcDir);
