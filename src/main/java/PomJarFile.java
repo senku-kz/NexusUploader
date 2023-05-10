@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Set;
 
 public class PomJarFile {
@@ -57,13 +56,12 @@ public class PomJarFile {
     public void workWithDirectory(String repositoryId, String urlNexus, String srcDir){
         Set<String> fileSet = xmlFile.getPomSet(srcDir);
 
-        Iterator<String> itr = fileSet.iterator();
-        while (itr.hasNext()) {
+        for (String filename : fileSet) {
             System.out.println("===========================================");
-            String srcFilePom = srcDir + "/" + itr.next();
+            String srcFilePom = srcDir + "/" + filename;
             System.out.println(srcFilePom);
 
-            String srcFileJar = srcFilePom.substring(0,srcFilePom.length()-3) + "jar";
+            String srcFileJar = srcFilePom.substring(0, srcFilePom.length() - 3) + "jar";
             boolean c = new File(srcFileJar).isFile();
             System.out.printf("%s\t%s%n", c, srcFileJar);
             if (c) {

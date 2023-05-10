@@ -46,14 +46,15 @@ public class RunMvnFromJava {
 
 
     // Actual execution starts here
-    public static void main(String args[]) throws IOException{
+    public static void main(String args[]){
         try{
             // Run and get the output.
             String outlist[] = runCommand("mvn integration-test -DskipTests -P interactive -e");
             // Print the output to screen character by character.
             // Safe and not very inefficient.
-            for (int i = 0; i < outlist.length; i++)
-                System.out.println(outlist[i]);
+            for (String el:outlist){
+                System.out.println(el);
+            }
         } catch (IOException e) {
             System.err.println(e);
         }
