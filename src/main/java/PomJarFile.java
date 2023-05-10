@@ -32,7 +32,7 @@ public class PomJarFile {
             String cmd = String.format("mvn deploy:deploy-file -DgeneratePom=false " +
                             "-DrepositoryId=%s " +
                             "-Durl=%s " +
-                            "-DpomFile==%s " +
+                            "-DpomFile=%s " +
                             "-Dfile=%s",
                     repositoryId,
                     urlNexus,
